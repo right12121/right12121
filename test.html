@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食堂菜品推荐器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        #recommendation {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #4a4a4a;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .radio-group {
+            margin-bottom: 1rem;
+        }
+        .radio-group label {
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>今天吃什么？</h1>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="canteen" value="C" checked> C栋食堂
+            </label>
+            <label>
+                <input type="radio" name="canteen" value="D"> D栋食堂
+            </label>
+        </div>
+        <p id="recommendation">点击下方按钮获取推荐</p>
+        <button onclick="getRecommendation()">随机推荐</button>
+    </div>
+
+    <script>
+        const dishes = ["C快餐线", "C沙拉", "C水煮", "C西北面", "C隆门小肆", "C盖浇饭", "C粉面", "C烧腊", "C铁板", "C御蝶坊", "C鸡汤饭", "C包子铺", "C手工坊", "C塬麦香", "C韩式拌饭", "C融合小馆", "C潮汕粿条", "C锅里捞", "C捞饭牛排档口", "C小炒档口", "D零点自选", "D三汁焖锅", "D潮汕人家", "D卤烧味", "D成都味道", "D鲜粉人家", "D火锅", "D煎扒屋", "D水煮渔", "D蒸菜", "D披萨", "D", "D面包坊", "D融合小馆", "DMY川灶", "D轻食沙拉", "D功夫捞面", "DU滋U味", "D韩尚风", "D西式简餐", "D滑蛋饭", "D擂椒拌饭", "D自选餐线", "D烧腊-小碗鲜湘", "D客家菜", "D简餐", "D渔天下", "D港式", "D冒菜", "D小炒", "D粉面档"];
+
+        function getRecommendation() {
+            const selectedCanteen = document.querySelector('input[name="canteen"]:checked').value;
+            const filteredDishes = dishes.filter(dish => 
+                dish.startsWith(selectedCanteen) && dish.length > 1
+            );
+            
+            if (filteredDishes.length === 0) {
+                document.getElementById("recommendation").textContent = "没有找到匹配的菜品";
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * filteredDishes.length);
+            const recommendation = filteredDishes[randomIndex].slice(1);
+            document.getElementById("recommendation").textContent = recommendation;
+        }
+    </script>
+</body>
+</html>
