@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>食堂菜品推荐器</title>
     <style>
         body {
@@ -10,27 +10,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f5f5f5;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .container {
             text-align: center;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            max-width: 90%;
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
         }
         h1 {
             color: #333;
             font-size: 1.8rem;
+            margin-bottom: 1.5rem;
         }
         #recommendation {
             font-size: 1.3rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             color: #4a4a4a;
+            min-height: 2em;
         }
         button {
             background-color: #4CAF50;
@@ -55,7 +55,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         .radio-group label {
             margin: 0.5rem;
@@ -72,9 +72,6 @@
             color: #4CAF50;
         }
         @media (max-width: 480px) {
-            .container {
-                padding: 1rem;
-            }
             h1 {
                 font-size: 1.5rem;
             }
