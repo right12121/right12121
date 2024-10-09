@@ -18,7 +18,6 @@
 
         body, html {
             font-family: 'Noto Sans SC', sans-serif;
-            margin: 0;
             padding: 0;
             height: 100%;
             color: var(--text-color);
@@ -83,7 +82,7 @@
             background-color: var(--background-color);
             border-radius: 15px;
             padding: 1rem;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
         button {
@@ -279,7 +278,12 @@
             }
         }
 
-        window.addEventListener('load', generateBackgroundIcons);
+        // 页面加载完成后执行初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            generateBackgroundIcons();
+        });
+
+        // 窗口大小改变时重新生成背景图标
         window.addEventListener('resize', generateBackgroundIcons);
     </script>
 </body>
