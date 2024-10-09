@@ -191,12 +191,63 @@
             event.preventDefault();
         }, { passive: false });
 
-        const dishes = ["C快餐线", "C沙拉", "C水煮", "C西北面", "C隆门小肆", "C盖浇饭", "C粉面", "C烧腊", "C铁板", "C御蝶坊", "C鸡汤饭", "C包子铺", "C手工坊", "C塬麦香", "C韩式拌饭", "C融合小馆", "C潮汕粿条", "C锅里捞", "C捞饭牛排档口", "C小炒档口", "D零点自选", "D三汁焖锅", "D潮汕人家", "D卤烧味", "D成都味道", "D鲜粉人家", "D火锅", "D煎扒屋", "D水煮渔", "D蒸菜", "D披萨", "D", "D面包坊", "D融合小馆", "DMY川灶", "D轻食沙拉", "D功夫捞面", "DU滋U味", "D韩尚风", "D西式简餐", "D滑蛋饭", "D擂椒拌饭", "D自选餐线", "D烧腊-小碗鲜湘", "D客家菜", "D简餐", "D渔天下", "D港式", "D冒菜", "D小炒", "D粉面档"];
+        const dishes = [
+            {name: "C快餐线", emoji: "🍱"},
+            {name: "C沙拉", emoji: "🥗"},
+            {name: "C水煮", emoji: "🥘"},
+            {name: "C西北面", emoji: "🍜"},
+            {name: "C隆门小肆", emoji: "🍲"},
+            {name: "C盖浇饭", emoji: "🍚"},
+            {name: "C粉面", emoji: "🍝"},
+            {name: "C烧腊", emoji: "🍖"},
+            {name: "C铁板", emoji: "🥩"},
+            {name: "C御蝶坊", emoji: "🦋"},
+            {name: "C鸡汤饭", emoji: "🍗"},
+            {name: "C包子铺", emoji: "🥟"},
+            {name: "C手工坊", emoji: "🥠"},
+            {name: "C塬麦香", emoji: "🌾"},
+            {name: "C韩式拌饭", emoji: "🍙"},
+            {name: "C融合小馆", emoji: "🍴"},
+            {name: "C潮汕粿条", emoji: "🍜"},
+            {name: "C锅里捞", emoji: "🍲"},
+            {name: "C捞饭牛排档口", emoji: "🥩"},
+            {name: "C小炒档口", emoji: "🍳"},
+            {name: "D零点自选", emoji: "🍽️"},
+            {name: "D三汁焖锅", emoji: "🥘"},
+            {name: "D潮汕人家", emoji: "🍜"},
+            {name: "D卤烧味", emoji: "🍖"},
+            {name: "D成都味道", emoji: "🌶️"},
+            {name: "D鲜粉人家", emoji: "🍝"},
+            {name: "D火锅", emoji: "🍲"},
+            {name: "D煎扒屋", emoji: "🥩"},
+            {name: "D水煮渔", emoji: "🐟"},
+            {name: "D蒸菜", emoji: "🥬"},
+            {name: "D披萨", emoji: "🍕"},
+            {name: "D面包坊", emoji: "🍞"},
+            {name: "D融合小馆", emoji: "🍴"},
+            {name: "DMY川灶", emoji: "🌶️"},
+            {name: "D轻食沙拉", emoji: "🥗"},
+            {name: "D功夫捞面", emoji: "🍜"},
+            {name: "DU滋U味", emoji: "😋"},
+            {name: "D韩尚风", emoji: "🇰🇷"},
+            {name: "D西式简餐", emoji: "🍽️"},
+            {name: "D滑蛋饭", emoji: "🍳"},
+            {name: "D擂椒拌饭", emoji: "🌶️"},
+            {name: "D自选餐线", emoji: "🍱"},
+            {name: "D烧腊-小碗鲜湘", emoji: "🍖"},
+            {name: "D客家菜", emoji: "🍲"},
+            {name: "D简餐", emoji: "🍽️"},
+            {name: "D渔天下", emoji: "🐟"},
+            {name: "D港式", emoji: "🇭🇰"},
+            {name: "D冒菜", emoji: "🥘"},
+            {name: "D小炒", emoji: "🍳"},
+            {name: "D粉面档", emoji: "🍜"}
+        ];
 
         function getRecommendation() {
             const selectedCanteen = document.querySelector('input[name="canteen"]:checked').value;
             const filteredDishes = dishes.filter(dish => 
-                dish.startsWith(selectedCanteen) && dish.length > 1
+                dish.name.startsWith(selectedCanteen) && dish.name.length > 1
             );
             
             if (filteredDishes.length === 0) {
@@ -205,11 +256,11 @@
             }
 
             const randomIndex = Math.floor(Math.random() * filteredDishes.length);
-            const recommendation = filteredDishes[randomIndex].slice(1);
+            const recommendation = filteredDishes[randomIndex];
             const recommendationElement = document.getElementById("recommendation");
             recommendationElement.style.opacity = 0;
             setTimeout(() => {
-                recommendationElement.textContent = recommendation;
+                recommendationElement.textContent = `${recommendation.emoji} ${recommendation.name.slice(1)}`;
                 recommendationElement.style.opacity = 1;
             }, 300);
         }
