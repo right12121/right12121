@@ -29,6 +29,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: var(--background-color);
         }
 
         .background-icons {
@@ -39,20 +40,19 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-        }
-
-        .icon-row {
-            display: flex;
-            justify-content: space-around;
-            transform: rotate(-15deg);
-            margin: -50px 0;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            transform: rotate(-15deg) scale(1.5);
         }
 
         .background-icons i {
             font-size: 2rem;
             color: var(--primary-color);
             opacity: 0.1;
-            margin: 0 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
@@ -167,22 +167,7 @@
     </style>
 </head>
 <body>
-    <div class="background-icons">
-        <!-- 重复这个结构来创建多行图标 -->
-        <div class="icon-row">
-            <i class="fas fa-utensils"></i>
-            <i class="fas fa-hamburger"></i>
-            <i class="fas fa-pizza-slice"></i>
-            <i class="fas fa-drumstick-bite"></i>
-            <i class="fas fa-fish"></i>
-            <i class="fas fa-egg"></i>
-            <i class="fas fa-carrot"></i>
-            <i class="fas fa-apple-alt"></i>
-            <i class="fas fa-ice-cream"></i>
-            <i class="fas fa-cookie"></i>
-        </div>
-        <!-- 复制上面的 icon-row div 多次以填满背景 -->
-    </div>
+    <div class="background-icons" id="backgroundIcons"></div>
 
     <div class="container">
         <h1>今天吃什么？</h1>
@@ -231,15 +216,15 @@
 
         // 动态生成背景图标
         function generateBackgroundIcons() {
-            const backgroundIcons = document.querySelector('.background-icons');
-            const iconRow = document.querySelector('.icon-row');
-            const rowHeight = iconRow.offsetHeight;
-            const screenHeight = window.innerHeight;
-            const rowsNeeded = Math.ceil(screenHeight / rowHeight) + 1;
+            const backgroundIcons = document.getElementById('backgroundIcons');
+            const icons = ['utensils', 'hamburger', 'pizza-slice', 'drumstick-bite', 'fish', 'egg', 'carrot', 'apple-alt', 'ice-cream', 'cookie'];
+            
+            backgroundIcons.innerHTML = ''; // 清空现有图标
 
-            for (let i = 0; i < rowsNeeded; i++) {
-                const newRow = iconRow.cloneNode(true);
-                backgroundIcons.appendChild(newRow);
+            for (let i = 0; i < 100; i++) {
+                const icon = document.createElement('i');
+                icon.className = `fas fa-${icons[i % icons.length]}`;
+                backgroundIcons.appendChild(icon);
             }
         }
 
